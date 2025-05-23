@@ -330,7 +330,7 @@
             <div class="card-content">
                 <img 
                     id="profilePhoto"
-                    src="photo.jpg" 
+                    src="https://placehold.co/160x160/${errorPlaceholderBg}/${errorPlaceholderText}?text=Error&font=inter" 
                     alt="Mitchel Labonté" 
                     class="w-36 h-36 sm:w-40 sm:h-40 rounded-full object-cover mx-auto mb-6 border-4 border-[var(--card-inset-border)] shadow-2xl animate-slide-fade-in"
                     onerror="this.onerror=null; this.src='https://placehold.co/160x160/90A4AE/FFFFFF?text=Photo+Error&font=inter';"
@@ -386,7 +386,7 @@
             const errorPlaceholderBg = isLightTheme ? 'B0BEC5' : '455A64'; 
             const errorPlaceholderText = isLightTheme ? '37474F' : 'CFD8DC'; 
 
-            profilePhoto.src = `https://placehold.co/160x160/${bgColorHex}/${textColorHex}?text=ML&font=inter`;
+            profilePhoto.src = `photo.jpg`;
             profilePhoto.onerror = function() {
                 this.onerror=null; 
                 this.src=`https://placehold.co/160x160/${errorPlaceholderBg}/${errorPlaceholderText}?text=Error&font=inter`;
