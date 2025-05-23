@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitchel Labonté - Professional Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        :root {
+            /* Dark Theme (Default) */
+            --page-bg: #0a192f;
+            --text-primary-color: #e0e0e0;
+            --text-secondary-color: #b0bec5;
+            --text-heading-color: #ffffff;
+            --card-bg: rgba(38, 50, 56, 0.75);
+            --card-backdrop-blur: 18px;
+            --card-backdrop-saturate: 120%;
+            --card-shadow: rgba(0, 0, 0, 0.4);
+            --card-inset-border: rgba(255, 255, 255, 0.15);
+            --footer-border: rgba(255, 255, 255, 0.1);
+            --button-primary-bg: #00796B;
+            --button-primary-text: #FFFFFF;
+            --button-primary-hover-bg: #004D40;
+            --button-primary-shadow: rgba(0, 121, 107, 0.3);
+            --button-primary-hover-shadow: rgba(0, 77, 64, 0.4);
+            --button-outline-border: #78909c;
+            --button-outline-text: #26A69A;
+            --button-outline-hover-bg: rgba(0, 121, 107, 0.15);
+            --button-outline-hover-border: #26A69A;
+            --button-shine-gradient: linear-gradient(120deg, transparent, rgba(255,255,255,0.15), transparent);
+            --icon-color: var(--text-secondary-color);
+            --theme-switcher-color: var(--text-secondary-color);
+            --theme-switcher-hover-color: #00BCD4;
+
+            /* Aurora Dark Theme */
+            --aurora-1-start: #0D47A1; --aurora-1-mid1: #00BCD4; --aurora-1-mid2: #26A69A; --aurora-1-mid3: #00796B; --aurora-1-end: #0D47A1;
+            --aurora-2-start: #003366; --aurora-2-mid1: #006064; --aurora-2-mid2: #0097A7; --aurora-2-mid3: #2E7D32; --aurora-2-end: #003366;
+            --aurora-opacity-1: 0.5;
+            --aurora-opacity-2: 0.4;
+            --aurora-blur-1: 100px;
+            --aurora-blur-2: 120px;
+
+            /* Particles Dark Theme */
+            --particle-p1-bg: rgba(0, 188, 212, 0.4); --particle-p1-shadow: rgba(0, 188, 212, 0.6);
+            --particle-p2-bg: rgba(0, 121, 107, 0.5); --particle-p2-shadow: rgba(0, 121, 107, 0.7);
+            --particle-p3-bg: rgba(76, 175, 80, 0.3); --particle-p3-shadow: rgba(76, 175, 80, 0.5);
+            --particle-p4-bg: rgba(38, 166, 154, 0.45); --particle-p4-shadow: rgba(38, 166, 154, 0.6);
+            --particle-p5-bg: rgba(0, 150, 136, 0.4); --particle-p5-shadow: rgba(0, 150, 136, 0.5);
+            --particle-p6-bg: rgba(176, 190, 197, 0.6); --particle-p6-shadow: rgba(176, 190, 197, 0.8);
+            --particle-p7-bg: rgba(33, 150, 243, 0.3); --particle-p7-shadow: rgba(33, 150, 243, 0.4);
+            --particle-opacity-base: 0.2;
+            --particle-opacity-hover: 0.7;
+
+            --placeholder-bg: #00796B;
+            --placeholder-text: #FFFFFF;
+        }
+
+        .light-theme {
+            --page-bg: #f0f4f8;
+            --text-primary-color: #37474f;
+            --text-secondary-color: #546e7a;
+            --text-heading-color: #263238;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --card-backdrop-blur: 16px;
+            --card-backdrop-saturate: 100%;
+            --card-shadow: rgba(0, 0, 0, 0.15);
+            --card-inset-border: rgba(0, 0, 0, 0.1);
+            --footer-border: rgba(0, 0, 0, 0.08);
+            --button-primary-bg: #00897B;
+            --button-primary-text: #FFFFFF;
+            --button-primary-hover-bg: #00695C;
+            --button-primary-shadow: rgba(0, 137, 123, 0.25);
+            --button-primary-hover-shadow: rgba(0, 105, 92, 0.35);
+            --button-outline-border: #546e7a;
+            --button-outline-text: #00695C;
+            --button-outline-hover-bg: rgba(0, 137, 123, 0.08);
+            --button-outline-hover-border: #00695C;
+            --button-shine-gradient: linear-gradient(120deg, transparent, rgba(0,0,0,0.05), transparent);
+            --icon-color: var(--text-secondary-color);
+            --theme-switcher-color: var(--text-secondary-color);
+            --theme-switcher-hover-color: #00897B;
+
+            /* Aurora Light Theme */
+            --aurora-1-start: #80DEEA; --aurora-1-mid1: #4DD0E1; --aurora-1-mid2: #A7FFEB; --aurora-1-mid3: #B2EBF2; --aurora-1-end: #80DEEA;
+            --aurora-2-start: #CFD8DC; --aurora-2-mid1: #B0BEC5; --aurora-2-mid2: #E0F7FA; --aurora-2-mid3: #90A4AE; --aurora-2-end: #CFD8DC;
+            --aurora-opacity-1: 0.6;
+            --aurora-opacity-2: 0.5;
+            --aurora-blur-1: 80px;
+            --aurora-blur-2: 100px;
+
+            /* Particles Light Theme */
+            --particle-p1-bg: rgba(0, 188, 212, 0.3); --particle-p1-shadow: rgba(0, 188, 212, 0.5);
+            --particle-p2-bg: rgba(0, 121, 107, 0.4); --particle-p2-shadow: rgba(0, 121, 107, 0.6);
+            --particle-p3-bg: rgba(129, 199, 132, 0.3); --particle-p3-shadow: rgba(129, 199, 132, 0.5);
+            --particle-p4-bg: rgba(77, 182, 172, 0.35); --particle-p4-shadow: rgba(77, 182, 172, 0.5);
+            --particle-p5-bg: rgba(38, 166, 154, 0.3); --particle-p5-shadow: rgba(38, 166, 154, 0.4);
+            --particle-p6-bg: rgba(144, 164, 174, 0.5); --particle-p6-shadow: rgba(144, 164, 174, 0.7);
+            --particle-p7-bg: rgba(79, 195, 247, 0.25); --particle-p7-shadow: rgba(79, 195, 247, 0.35);
+            --particle-opacity-base: 0.3;
+            --particle-opacity-hover: 0.8;
+
+            --placeholder-bg: #00897B;
+            --placeholder-text: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: var(--text-primary-color); 
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh; /* Ensures page takes full viewport height */
+            padding: 1rem; /* Added padding to body to prevent card touching edges on small screens if content is short */
+            position: relative; 
+            background-color: var(--page-bg);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        #particle-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2; pointer-events: none; 
+        }
+        .particle {
+            position: absolute; border-radius: 50%;
+            animation: float 20s infinite ease-in-out, fadeInOut 10s infinite alternate ease-in-out;
+            will-change: transform, opacity;
+        }
+        .particle.p1 { width: 15px; height: 15px; background-color: var(--particle-p1-bg); left: 10%; top: 20%; animation-duration: 25s, 12s; box-shadow: 0 0 10px var(--particle-p1-shadow); }
+        .particle.p2 { width: 8px; height: 8px; background-color: var(--particle-p2-bg); left: 80%; top: 30%; animation-duration: 30s, 8s; animation-delay: -5s, -2s; box-shadow: 0 0 8px var(--particle-p2-shadow); }
+        .particle.p3 { width: 25px; height: 25px; background-color: var(--particle-p3-bg); left: 50%; top: 70%; animation-duration: 20s, 15s; animation-delay: -10s, -4s; box-shadow: 0 0 15px var(--particle-p3-shadow); }
+        .particle.p4 { width: 12px; height: 12px; background-color: var(--particle-p4-bg); left: 25%; top: 80%; animation-duration: 35s, 10s; animation-delay: -15s, -1s; box-shadow: 0 0 12px var(--particle-p4-shadow); }
+        .particle.p5 { width: 18px; height: 18px; background-color: var(--particle-p5-bg); left: 70%; top: 10%; animation-duration: 22s, 13s; animation-delay: -3s, -3s; box-shadow: 0 0 13px var(--particle-p5-shadow); }
+        .particle.p6 { width: 5px; height: 5px; background-color: var(--particle-p6-bg); left: 5%; top: 50%; animation-duration: 40s, 7s; animation-delay: -8s, 0s; box-shadow: 0 0 5px var(--particle-p6-shadow); }
+        .particle.p7 { width: 22px; height: 22px; background-color: var(--particle-p7-bg); left: 90%; top: 60%; animation-duration: 28s, 11s; animation-delay: -12s, -5s; box-shadow: 0 0 18px var(--particle-p7-shadow); }
+
+        @keyframes float {
+            0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) translateX(15px) rotate(45deg); }
+            50% { transform: translateY(10px) translateX(-10px) rotate(90deg); }
+            75% { transform: translateY(-15px) translateX(20px) rotate(135deg); }
+            100% { transform: translateY(0px) translateX(0px) rotate(180deg); }
+        }
+        @keyframes fadeInOut { 0%, 100% { opacity: var(--particle-opacity-base); } 50% { opacity: var(--particle-opacity-hover); } }
+
+        body::before, body::after {
+            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; background-size: 300% 300%; 
+            animation: cosmicFlow 30s ease-in-out infinite alternate; 
+            transition: opacity 0.5s ease, filter 0.5s ease; 
+        }
+        body::before {
+            background-image: linear-gradient(45deg, var(--aurora-1-start), var(--aurora-1-mid1), var(--aurora-1-mid2), var(--aurora-1-mid3), var(--aurora-1-end)); 
+            opacity: var(--aurora-opacity-1); filter: blur(var(--aurora-blur-1)); 
+        }
+        body::after {
+            background-image: linear-gradient(315deg, var(--aurora-2-start), var(--aurora-2-mid1), var(--aurora-2-mid2), var(--aurora-2-mid3), var(--aurora-2-end)); 
+            opacity: var(--aurora-opacity-2); animation-direction: alternate-reverse; 
+            animation-duration: 35s; filter: blur(var(--aurora-blur-2)); 
+        }
+        @keyframes cosmicFlow {
+            0% { background-position: 0% 0%; transform: scale(1); }
+            50% { background-position: 100% 100%; transform: scale(1.15); } 
+            100% { background-position: 0% 0%; transform: scale(1); }
+        }
+        
+        /* Interactive Card Container */
+        .interactive-card-container {
+            width: 100%;
+            max-width: 42rem; 
+            /* min-height: 650px; REMOVED to allow content to dictate height */
+            height: auto; /* Explicitly set to auto */
+            position: relative;
+            perspective: 1500px; 
+            transform-style: preserve-3d; 
+            transition: transform 0.1s ease-out; 
+            will-change: transform;
+            z-index: 1;
+        }
+
+        /* Main Card Styling */
+        .m3-card {
+            width: 100%;
+            height: auto; /* Allow card to size to its content */
+            display: flex;
+            flex-direction: column; 
+            background-color: var(--card-bg); 
+            -webkit-backdrop-filter: blur(var(--card-backdrop-blur)) saturate(var(--card-backdrop-saturate)); 
+            backdrop-filter: blur(var(--card-backdrop-blur)) saturate(var(--card-backdrop-saturate)); 
+            border-radius: 1.5rem; 
+            box-shadow: 0 12px 40px var(--card-shadow), 
+                        inset 0 0 0 1.5px var(--card-inset-border); 
+            overflow: hidden; 
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-content {
+            flex-grow: 1; /* This will ensure content takes up space, pushing footer down */
+            padding: 1.5rem; text-align: center;
+        }
+        @media (min-width: 768px) { .card-content { padding: 2.5rem; } }
+
+        .card-footer {
+            padding: 1.25rem 1.5rem; 
+            border-top: 1px solid var(--footer-border);
+            text-align: center;
+            transition: border-color 0.3s ease;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            flex-shrink: 0; /* Prevent footer from shrinking */
+        }
+        
+        .animate-slide-fade-in {
+            opacity: 0; transform: translateY(20px);
+            animation: slideFadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        .animate-slide-fade-in.delay-1 { animation-delay: 0.2s; }
+        .animate-slide-fade-in.delay-2 { animation-delay: 0.4s; }
+        .animate-slide-fade-in.delay-3 { animation-delay: 0.6s; } 
+        .animate-slide-fade-in.delay-4 { animation-delay: 0.8s; } 
+
+        @keyframes slideFadeIn { to { opacity: 1; transform: translateY(0); } }
+        
+        .m3-button {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 0.8rem 1.6rem; border-radius: 2rem; font-weight: 600; 
+            transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1); 
+            text-decoration: none; text-transform: none; 
+            position: relative; overflow: hidden; 
+        }
+        .m3-button::before { 
+            content: ""; position: absolute; top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: var(--button-shine-gradient);
+            transition: left 0.5s cubic-bezier(0.25,0.1,0.25,1);
+        }
+        .m3-button:hover::before { left: 100%; }
+
+        .m3-button-primary {
+            background-color: var(--button-primary-bg); color: var(--button-primary-text); 
+            box-shadow: 0 2px 8px var(--button-primary-shadow);
+        }
+        .m3-button-primary:hover {
+            background-color: var(--button-primary-hover-bg); 
+            box-shadow: 0 6px 16px var(--button-primary-hover-shadow); 
+            transform: translateY(-2px) scale(1.02);
+        }
+        .m3-button-outlined {
+            border: 1.5px solid var(--button-outline-border); color: var(--button-outline-text); 
+            background-color: transparent;
+        }
+        .m3-button-outlined:hover {
+            background-color: var(--button-outline-hover-bg); 
+            border-color: var(--button-outline-hover-border);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .m3-icon { width: 1.5rem; height: 1.5rem; margin-right: 0.75rem; color: currentColor; }
+        
+        .m3-card h1 { color: var(--text-heading-color); }
+        .m3-card p { color: var(--text-primary-color); }
+        .m3-card .text-slate-600 { color: var(--text-secondary-color); }
+        .m3-card .text-slate-500 { color: var(--text-secondary-color); }
+        .m3-card .m3-button-primary { color: var(--button-primary-text); }
+        
+        #themeSwitcher {
+            background: none; border: none; padding: 0.5rem; cursor: pointer;
+            color: var(--theme-switcher-color);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        #themeSwitcher:hover {
+            color: var(--theme-switcher-hover-color);
+            transform: scale(1.1) rotate(15deg);
+        }
+        #themeSwitcher ion-icon { font-size: 1.5rem; }
+
+    </style>
+</head>
+<body class=""> <div id="particle-container">
+        <div class="particle p1"></div> <div class="particle p2"></div> <div class="particle p3"></div>
+        <div class="particle p4"></div> <div class="particle p5"></div> <div class="particle p6"></div>
+        <div class="particle p7"></div>
+    </div>
+
+    <div class="interactive-card-container" id="interactiveCard">
+        <div class="m3-card">
+            <div class="card-content">
+                <img 
+                    id="profilePhoto"
+                    src="https://placehold.co/160x160/00796B/FFFFFF?text=ML&font=inter" 
+                    alt="Mitchel Labonté" 
+                    class="w-36 h-36 sm:w-40 sm:h-40 rounded-full mx-auto mb-6 border-4 border-[var(--card-inset-border)] shadow-2xl animate-slide-fade-in"
+                    onerror="this.onerror=null; this.src='https://placehold.co/160x160/90A4AE/FFFFFF?text=Photo+Error&font=inter';"
+                >
+                <h1 class="text-4xl sm:text-5xl font-bold animate-slide-fade-in delay-1">Mitchel Labonté</h1>
+                <p class="text-lg sm:text-xl text-slate-600 mt-2 animate-slide-fade-in delay-2">Software Developer | Tech Innovator</p>
+            
+                <div class="mt-8 space-y-5">
+                    <a href="mailto:mitchel.labonte@example.com" class="m3-button m3-button-primary w-full max-w-xs mx-auto animate-slide-fade-in delay-3">
+                        <ion-icon name="mail-outline" class="m3-icon"></ion-icon>
+                        Email Me
+                    </a>
+                    <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="m3-button m3-button-outlined w-full max-w-xs mx-auto animate-slide-fade-in delay-3">
+                        <ion-icon name="logo-github" class="m3-icon"></ion-icon>
+                        GitHub
+                    </a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" class="m3-button m3-button-outlined w-full max-w-xs mx-auto animate-slide-fade-in delay-3">
+                        <ion-icon name="logo-linkedin" class="m3-icon"></ion-icon>
+                        LinkedIn
+                    </a>
+                    </div>
+            </div>
+            <footer class="card-footer"> 
+                <p class="text-sm text-slate-500 animate-slide-fade-in delay-4">&copy; <span id="currentYear"></span> Mitchel Labonté.</p>
+                <button id="themeSwitcher" aria-label="Toggle theme">
+                    <ion-icon name="moon-outline"></ion-icon> 
+                </button>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        const interactiveCard = document.getElementById('interactiveCard');
+        const themeSwitcherBtn = document.getElementById('themeSwitcher');
+        const themeIcon = themeSwitcherBtn.querySelector('ion-icon');
+        const profilePhoto = document.getElementById('profilePhoto');
+        const bodyEl = document.body;
+        const intensity = 10; 
+
+        function updateProfilePhotoPlaceholder() {
+            const isLightTheme = bodyEl.classList.contains('light-theme');
+            let bgColorHex, textColorHex;
+
+            if (isLightTheme) {
+                bgColorHex = getComputedStyle(bodyEl).getPropertyValue('--placeholder-bg').trim().substring(1) || '00897B';
+                textColorHex = getComputedStyle(bodyEl).getPropertyValue('--placeholder-text').trim().substring(1) || 'FFFFFF';
+            } else {
+                bgColorHex = getComputedStyle(bodyEl).getPropertyValue('--placeholder-bg').trim().substring(1) || '00796B';
+                textColorHex = getComputedStyle(bodyEl).getPropertyValue('--placeholder-text').trim().substring(1) || 'FFFFFF';
+            }
+            profilePhoto.src = `https://placehold.co/160x160/${bgColorHex}/${textColorHex}?text=ML&font=inter`;
+        }
+        
+        function applyThemePreference(theme) {
+            if (theme === 'light') {
+                bodyEl.classList.add('light-theme');
+                themeIcon.setAttribute('name', 'sunny-outline');
+            } else {
+                bodyEl.classList.remove('light-theme');
+                themeIcon.setAttribute('name', 'moon-outline');
+            }
+            updateProfilePhotoPlaceholder(); 
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            applyThemePreference(savedTheme);
+        } else {
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            applyThemePreference(prefersDark ? 'dark' : 'light');
+        }
+
+
+        themeSwitcherBtn.addEventListener('click', () => {
+            const isLightTheme = bodyEl.classList.toggle('light-theme');
+            const newTheme = isLightTheme ? 'light' : 'dark';
+            applyThemePreference(newTheme); 
+            localStorage.setItem('theme', newTheme); 
+        });
+        
+        if (interactiveCard) {
+            interactiveCard.addEventListener('mousemove', (e) => {
+                const rect = interactiveCard.getBoundingClientRect();
+                const cardWidth = rect.width;
+                const cardHeight = rect.height;
+                const mouseX = e.clientX - rect.left - cardWidth / 2;
+                const mouseY = e.clientY - rect.top - cardHeight / 2;
+                const rotateY = (mouseX / (cardWidth / 2)) * intensity;
+                const rotateX = -(mouseY / (cardHeight / 2)) * intensity;
+                interactiveCard.style.transform = `perspective(1500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+            });
+            interactiveCard.addEventListener('mouseleave', () => {
+                interactiveCard.style.transform = 'perspective(1500px) rotateX(0deg) rotateY(0deg) scale(1)';
+            });
+        }
+    </script>
+
+</body>
+</html>
