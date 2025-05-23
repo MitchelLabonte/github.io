@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mitchel Labonté</title>
+    <title>Mitchel Labonté - ULTRA CRAZY Edition</title>
     <link rel="icon" href="favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
     <style>
         :root {
             /* Dark Theme (Default) */
@@ -33,10 +34,18 @@
             --button-shine-gradient: linear-gradient(120deg, transparent, rgba(255,255,255,0.15), transparent);
             --icon-color: var(--text-secondary-color);
             --theme-switcher-color: var(--text-secondary-color);
-            --theme-switcher-hover-color: #00BCD4;
+            --theme-switcher-hover-color: #00BCD4; /* Used for particles */
+            --flash-color: rgba(255, 255, 255, 0.9); /* Brighter Flash */
+            --glitch-color-1: #ff00ff;
+            --glitch-color-2: #00ffff;
+
 
             /* Aurora Dark Theme */
-            --aurora-1-start: #0D47A1; --aurora-1-mid1: #00BCD4; --aurora-1-mid2: #26A69A; --aurora-1-mid3: #00796B; --aurora-1-end: #0D47A1;
+            --aurora-1-start: #0D47A1; 
+            --aurora-1-mid1: #00BCD4; /* Used for particles */
+            --aurora-1-mid2: #26A69A; /* Used for particles */
+            --aurora-1-mid3: #00796B; 
+            --aurora-1-end: #0D47A1;
             --aurora-2-start: #003366; --aurora-2-mid1: #006064; --aurora-2-mid2: #0097A7; --aurora-2-mid3: #2E7D32; --aurora-2-end: #003366;
             --aurora-opacity-1: 0.5;
             --aurora-opacity-2: 0.4;
@@ -70,7 +79,7 @@
             --card-shadow: rgba(0, 0, 0, 0.15);
             --card-inset-border: rgba(0, 0, 0, 0.1);
             --footer-border: rgba(0, 0, 0, 0.08);
-            --button-primary-bg: #00897B;
+            --button-primary-bg: #00897B; /* Used for particles */
             --button-primary-text: #FFFFFF;
             --button-primary-hover-bg: #00695C;
             --button-primary-shadow: rgba(0, 137, 123, 0.25);
@@ -82,10 +91,17 @@
             --button-shine-gradient: linear-gradient(120deg, transparent, rgba(0,0,0,0.05), transparent);
             --icon-color: var(--text-secondary-color);
             --theme-switcher-color: var(--text-secondary-color);
-            --theme-switcher-hover-color: #00897B;
+            --theme-switcher-hover-color: #00897B; /* Used for particles */
+            --flash-color: rgba(38, 50, 56, 0.85); /* Flash effect color for light theme */
+            --glitch-color-1: #ff00ff;
+            --glitch-color-2: #00ff00;
+
 
             /* Aurora Light Theme */
-            --aurora-1-start: #80DEEA; --aurora-1-mid1: #4DD0E1; --aurora-1-mid2: #A7FFEB; --aurora-1-mid3: #B2EBF2; --aurora-1-end: #80DEEA;
+            --aurora-1-start: #80DEEA; 
+            --aurora-1-mid1: #4DD0E1; /* Used for particles */
+            --aurora-1-mid2: #A7FFEB; /* Used for particles */
+            --aurora-1-mid3: #B2EBF2; --aurora-1-end: #80DEEA;
             --aurora-2-start: #CFD8DC; --aurora-2-mid1: #B0BEC5; --aurora-2-mid2: #E0F7FA; --aurora-2-mid3: #90A4AE; --aurora-2-end: #CFD8DC;
             --aurora-opacity-1: 0.6;
             --aurora-opacity-2: 0.5;
@@ -93,17 +109,16 @@
             --aurora-blur-2: 100px;
 
             /* Particles Light Theme - UPDATED FOR VISIBILITY */
-            --particle-p1-bg: rgba(0, 150, 170, 0.5); --particle-p1-shadow: rgba(0, 150, 170, 0.7); /* Darker Cyan */
-            --particle-p2-bg: rgba(0, 90, 80, 0.6);   --particle-p2-shadow: rgba(0, 90, 80, 0.8);   /* Darker Teal */
-            --particle-p3-bg: rgba(60, 130, 70, 0.5); --particle-p3-shadow: rgba(60, 130, 70, 0.7); /* Darker Green */
-            --particle-p4-bg: rgba(30, 130, 120, 0.55); --particle-p4-shadow: rgba(30, 130, 120, 0.7);/* Darker Teal variant */
-            --particle-p5-bg: rgba(20, 130, 120, 0.5); --particle-p5-shadow: rgba(20, 130, 120, 0.6); /* Darker Teal */
-            --particle-p6-bg: rgba(100, 120, 130, 0.7); --particle-p6-shadow: rgba(100, 120, 130, 0.9);/* Darker Grey */
-            --particle-p7-bg: rgba(50, 120, 190, 0.45); --particle-p7-shadow: rgba(50, 120, 190, 0.6);/* Darker Blue */
-            --particle-opacity-base: 0.4; /* Increased base opacity */
-            --particle-opacity-hover: 0.9; /* Increased hover opacity */
-            --twinkle-star-bg: rgba(96, 125, 139, 0.8); /* Darker grey for stars on light bg, more opaque */
-
+            --particle-p1-bg: rgba(0, 150, 170, 0.5); --particle-p1-shadow: rgba(0, 150, 170, 0.7);
+            --particle-p2-bg: rgba(0, 90, 80, 0.6);   --particle-p2-shadow: rgba(0, 90, 80, 0.8);
+            --particle-p3-bg: rgba(60, 130, 70, 0.5); --particle-p3-shadow: rgba(60, 130, 70, 0.7);
+            --particle-p4-bg: rgba(30, 130, 120, 0.55); --particle-p4-shadow: rgba(30, 130, 120, 0.7);
+            --particle-p5-bg: rgba(20, 130, 120, 0.5); --particle-p5-shadow: rgba(20, 130, 120, 0.6);
+            --particle-p6-bg: rgba(100, 120, 130, 0.7); --particle-p6-shadow: rgba(100, 120, 130, 0.9);
+            --particle-p7-bg: rgba(50, 120, 190, 0.45); --particle-p7-shadow: rgba(50, 120, 190, 0.6);
+            --particle-opacity-base: 0.4; 
+            --particle-opacity-hover: 0.9; 
+            --twinkle-star-bg: rgba(96, 125, 139, 0.8); 
 
             --placeholder-bg: #00897B;
             --placeholder-text: #FFFFFF;
@@ -187,6 +202,15 @@
             50% { background-position: 100% 100%; transform: scale(1.2); } 
             100% { background-position: 0% 0%; transform: scale(1); }
         }
+        /* Background Warp Effect */
+        .background-warp body::before, .background-warp body::after {
+            animation: cosmicWarp 0.8s ease-in-out 1 forwards !important;
+        }
+        @keyframes cosmicWarp {
+            0% { filter: blur(var(--aurora-blur-1)) hue-rotate(0deg) saturate(1); transform: scale(1.2); }
+            50% { filter: blur(calc(var(--aurora-blur-1) * 0.5)) hue-rotate(180deg) saturate(3) brightness(1.5); transform: scale(1.5); }
+            100% { filter: blur(var(--aurora-blur-1)) hue-rotate(360deg) saturate(1); transform: scale(1.2); }
+        }
         
         .interactive-card-container {
             width: 100%;
@@ -197,8 +221,20 @@
             transform-style: preserve-3d; 
             transition: transform 0.1s ease-out; 
             will-change: transform;
-            z-index: 1;
+            z-index: 1; 
         }
+        /* Card Instability Effect */
+        .card-instability {
+            animation: cardWobble 0.6s ease-in-out 1 forwards;
+        }
+        @keyframes cardWobble {
+            0% { transform: perspective(1500px) rotateX(0deg) rotateY(0deg) scale(1.03) skewX(0deg) skewY(0deg); }
+            25% { transform: perspective(1500px) rotateX(5deg) rotateY(-5deg) scale(1.05) skewX(-3deg) skewY(2deg); }
+            50% { transform: perspective(1500px) rotateX(-3deg) rotateY(3deg) scale(1.01) skewX(2deg) skewY(-1deg); }
+            75% { transform: perspective(1500px) rotateX(2deg) rotateY(-2deg) scale(1.04) skewX(-1deg) skewY(1deg); }
+            100% { transform: perspective(1500px) rotateX(0deg) rotateY(0deg) scale(1.03) skewX(0deg) skewY(0deg); }
+        }
+
 
         .m3-card {
             width: 100%;
@@ -296,6 +332,105 @@
         }
         #themeSwitcher ion-icon { font-size: 1.5rem; }
 
+        #profilePhoto {
+            cursor: pointer; 
+            transition: transform 0.3s ease-out, filter 0.3s ease-out; /* Added filter transition */
+            position: relative; 
+            z-index: 10; 
+        }
+
+        /* --- Styles for ULTRA CRAZY Avatar Click Effect --- */
+        #avatar-flash-element {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--flash-color);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 999; 
+            will-change: opacity;
+        }
+        .flash-active {
+            animation: ultraQuickFlash 0.7s ease-out forwards; /* Slightly longer, more impactful flash */
+        }
+        @keyframes ultraQuickFlash {
+            0% { opacity: 0; transform: scale(0.7); }
+            30% { opacity: 1; transform: scale(1.3); } /* Bigger scale */
+            100% { opacity: 0; transform: scale(1); }
+        }
+
+
+        #avatar-click-effect-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; 
+            z-index: 1000; 
+            overflow: hidden; 
+        }
+
+        .click-effect-particle {
+            position: absolute; 
+            opacity: 0; 
+            will-change: transform, opacity, background-color; 
+            animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            animation-fill-mode: forwards;
+        }
+        .click-effect-particle.circle { border-radius: 50%; }
+        .click-effect-particle.streak { border-radius: 2px; } /* For sharper streaks */
+
+
+        @keyframes particleExplode {
+            0% {
+                transform: translate(var(--start-tx, 0), var(--start-ty, 0)) scale(0.05) rotate(0deg); /* Start even smaller */
+                opacity: 1;
+                filter: brightness(1.5);
+            }
+            20% {
+                 opacity: 1;
+                 filter: brightness(1);
+            }
+            100% {
+                transform: translate(var(--end-tx), var(--end-ty)) scale(var(--end-scale, 0.6)) rotate(var(--end-rotate, 720deg)); /* Add rotation */
+                opacity: 0;
+                filter: brightness(0.5);
+            }
+        }
+
+        .screen-shake-ultra { /* Renamed for intensity */
+            animation: screenShakeUltra 0.5s cubic-bezier(.36,.07,.19,.97) both; /* Longer, more intense */
+        }
+        @keyframes screenShakeUltra {
+            10%, 90% { transform: translate3d(-2px, 0, 0) rotate(-0.5deg); }
+            20%, 80% { transform: translate3d(4px, 0, 0) rotate(0.5deg); }
+            30%, 50%, 70% { transform: translate3d(-5px, 0, 0) rotate(-1deg); }
+            40%, 60% { transform: translate3d(5px, 0, 0) rotate(1deg); }
+        }
+
+        .avatar-obliterate { /* Renamed for intensity */
+            animation: avatarObliterate 0.8s ease-in-out forwards;
+        }
+        @keyframes avatarObliterate {
+            0% { transform: scale(1) rotate(0deg); opacity: 1; filter: brightness(1) contrast(1); }
+            15% { transform: scale(1.5) rotate(-15deg) translateX(-10px); opacity: 0.7; filter: brightness(2) contrast(1.5) blur(1px); }
+            30% { transform: scale(0.5) rotate(30deg) translateY(20px); opacity: 0.9; filter: brightness(0.5) contrast(2) saturate(3); }
+            45% { transform: scale(2.0) rotate(-45deg) translateX(15px); opacity: 0.6; filter: hue-rotate(90deg) blur(2px); }
+            60% { transform: scale(0.2) rotate(90deg) translateY(-10px); opacity: 1; filter: invert(1) brightness(1.5); }
+            80% { transform: scale(1.2) rotate(-5deg); opacity: 0.8; filter: brightness(1.2) contrast(1.2); }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; filter: brightness(1) contrast(1); }
+        }
+        
+        /* Text Scramble Styles */
+        .text-scramble-target {
+            position: relative; /* Needed for pseudo-elements if used, or direct manipulation */
+            transition: color 0.3s ease; /* Smooth color transition back */
+        }
+        /* --- End of Avatar Click Effect Styles --- */
+
     </style>
 </head>
 <body class=""> 
@@ -306,8 +441,8 @@
         <div class="particle orb-particle p7"></div>
         <div class="particle orb-particle p8"></div> <div class="particle orb-particle p9"></div>
         <div class="particle orb-particle p10"></div>
-
         <script>
+            // Particle generation script (existing)
             const particleContainer = document.getElementById('particle-container');
             if (particleContainer) {
                 for (let i = 0; i < 20; i++) {
@@ -326,17 +461,21 @@
         </script>
     </div>
 
+    <div id="avatar-click-effect-overlay"></div>
+    <div id="avatar-flash-element"></div>
+
+
     <div class="interactive-card-container" id="interactiveCard">
         <div class="m3-card">
             <div class="card-content">
                 <img 
                     id="profilePhoto"
-                    src="https://placehold.co/160x160/${errorPlaceholderBg}/${errorPlaceholderText}?text=Error&font=inter" 
+                    src="https://placehold.co/160x160/00796B/FFFFFF?text=ML&font=inter" 
                     alt="Mitchel Labonté" 
                     class="w-36 h-36 sm:w-60 sm:h-60 rounded-full object-cover mx-auto mb-6 border-4 border-[var(--card-inset-border)] shadow-2xl animate-slide-fade-in"
                     onerror="this.onerror=null; this.src='https://placehold.co/160x160/90A4AE/FFFFFF?text=Photo+Error&font=inter';"
                 >
-                <h1 class="text-4xl sm:text-5xl font-bold animate-slide-fade-in delay-1">Mitchel Labonté</h1>
+                <h1 id="mainHeading" class="text-4xl sm:text-5xl font-bold animate-slide-fade-in delay-1 text-scramble-target" data-original-text="Mitchel Labonté">Mitchel Labonté</h1>
                 <p class="text-lg sm:text-xl text-slate-600 mt-2 animate-slide-fade-in delay-2">Software Developer | Tech Enthusiast</p>
             
                 <div class="mt-8 space-y-5">
@@ -352,7 +491,7 @@
                         <ion-icon name="logo-linkedin" class="m3-icon"></ion-icon>
                         LinkedIn
                     </a>
-                    </div>
+                </div>
             </div>
             <footer class="card-footer"> 
                 <p class="text-sm text-slate-500 animate-slide-fade-in delay-4">&copy; <span id="currentYear"></span> Mitchel Labonté.</p>
@@ -364,47 +503,50 @@
     </div>
 
     <script>
+        // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        const interactiveCard = document.getElementById('interactiveCard');
+        // DOM Elements
+        const interactiveCardContainer = document.getElementById('interactiveCard'); // Changed variable name for clarity
         const themeSwitcherBtn = document.getElementById('themeSwitcher');
         const themeIcon = themeSwitcherBtn.querySelector('ion-icon');
         const profilePhoto = document.getElementById('profilePhoto');
         const bodyEl = document.body;
-        const intensity = 10; 
+        const intensity = 10; // For card tilt effect
+        const clickEffectOverlay = document.getElementById('avatar-click-effect-overlay'); 
+        const flashElement = document.getElementById('avatar-flash-element');
+        const mainHeading = document.getElementById('mainHeading'); // For text scramble
 
+        // Function to update profile photo placeholder based on theme
         function updateProfilePhotoPlaceholder() {
             const isLightTheme = bodyEl.classList.contains('light-theme');
-            let bgColorHex, textColorHex;
-
-            if (isLightTheme) {
-                bgColorHex = getComputedStyle(bodyEl).getPropertyValue('--placeholder-bg').trim().substring(1) || '00897B';
-                textColorHex = getComputedStyle(bodyEl).getPropertyValue('--placeholder-text').trim().substring(1) || 'FFFFFF';
-            } else {
-                bgColorHex = getComputedStyle(bodyEl).getPropertyValue('--placeholder-bg').trim().substring(1) || '00796B';
-                textColorHex = getComputedStyle(bodyEl).getPropertyValue('--placeholder-text').trim().substring(1) || 'FFFFFF';
-            }
+            const placeholderBgValue = getComputedStyle(bodyEl).getPropertyValue('--placeholder-bg').trim();
+            const placeholderTextValue = getComputedStyle(bodyEl).getPropertyValue('--placeholder-text').trim();
+            const bgColorHex = placeholderBgValue.startsWith('#') ? placeholderBgValue.substring(1) : '00796B';
+            const textColorHex = placeholderTextValue.startsWith('#') ? placeholderTextValue.substring(1) : 'FFFFFF';
             const errorPlaceholderBg = isLightTheme ? 'B0BEC5' : '455A64'; 
             const errorPlaceholderText = isLightTheme ? '37474F' : 'CFD8DC'; 
 
-            profilePhoto.src = `photo.jpg`;
+            profilePhoto.src = `photo.jpg`; 
             profilePhoto.onerror = function() {
                 this.onerror=null; 
                 this.src=`https://placehold.co/160x160/${errorPlaceholderBg}/${errorPlaceholderText}?text=Error&font=inter`;
             };
         }
         
+        // Function to apply theme (light/dark)
         function applyThemePreference(theme) {
             if (theme === 'light') {
                 bodyEl.classList.add('light-theme');
-                themeIcon.setAttribute('name', 'moon-outline');
+                themeIcon.setAttribute('name', 'sunny-outline'); 
             } else {
                 bodyEl.classList.remove('light-theme');
-                themeIcon.setAttribute('name', 'sunny-outline');
+                themeIcon.setAttribute('name', 'moon-outline'); 
             }
             updateProfilePhotoPlaceholder(); 
         }
 
+        // Load saved theme or detect system preference
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
             applyThemePreference(savedTheme);
@@ -413,7 +555,7 @@
             applyThemePreference(prefersDark ? 'dark' : 'light');
         }
 
-
+        // Event listener for theme switcher button
         themeSwitcherBtn.addEventListener('click', () => {
             const isLightTheme = bodyEl.classList.toggle('light-theme');
             const newTheme = isLightTheme ? 'light' : 'dark';
@@ -421,21 +563,236 @@
             localStorage.setItem('theme', newTheme); 
         });
         
-        if (interactiveCard) {
-            interactiveCard.addEventListener('mousemove', (e) => {
-                const rect = interactiveCard.getBoundingClientRect();
+        // Event listener for interactive card tilt effect
+        if (interactiveCardContainer) {
+            interactiveCardContainer.addEventListener('mousemove', (e) => {
+                if (bodyEl.classList.contains('effects-active')) return; // Disable tilt during crazy effects
+                const rect = interactiveCardContainer.getBoundingClientRect();
                 const cardWidth = rect.width;
                 const cardHeight = rect.height;
                 const mouseX = e.clientX - rect.left - cardWidth / 2;
                 const mouseY = e.clientY - rect.top - cardHeight / 2;
                 const rotateY = (mouseX / (cardWidth / 2)) * intensity;
                 const rotateX = -(mouseY / (cardHeight / 2)) * intensity;
-                interactiveCard.style.transform = `perspective(1500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+                interactiveCardContainer.style.transform = `perspective(1500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
             });
-            interactiveCard.addEventListener('mouseleave', () => {
-                interactiveCard.style.transform = 'perspective(1500px) rotateX(0deg) rotateY(0deg) scale(1)';
+            interactiveCardContainer.addEventListener('mouseleave', () => {
+                 if (bodyEl.classList.contains('effects-active')) return;
+                interactiveCardContainer.style.transform = 'perspective(1500px) rotateX(0deg) rotateY(0deg) scale(1)';
             });
         }
+
+        // --- Text Scramble Effect ---
+        class TextScramble {
+            constructor(el) {
+                this.el = el;
+                this.chars = '!<>-_\\/[]{}—=+*^?#________'; // More varied chars
+                this.update = this.update.bind(this);
+            }
+            setText(newText) {
+                const oldText = this.el.innerText;
+                const length = Math.max(oldText.length, newText.length);
+                const promise = new Promise((resolve) => this.resolve = resolve);
+                this.queue = [];
+                for (let i = 0; i < length; i++) {
+                    const from = oldText[i] || '';
+                    const to = newText[i] || '';
+                    const start = Math.floor(Math.random() * 60); // Faster start
+                    const end = start + Math.floor(Math.random() * 60); // Faster end
+                    this.queue.push({ from, to, start, end });
+                }
+                cancelAnimationFrame(this.frameRequest);
+                this.frame = 0;
+                this.update();
+                return promise;
+            }
+            update() {
+                let output = '';
+                let complete = 0;
+                for (let i = 0, n = this.queue.length; i < n; i++) {
+                    let { from, to, start, end, char } = this.queue[i];
+                    if (this.frame >= end) {
+                        complete++;
+                        output += to;
+                    } else if (this.frame >= start) {
+                        if (!char || Math.random() < 0.28) { // More frequent char change
+                            char = this.randomChar();
+                            this.queue[i].char = char;
+                        }
+                        output += `<span class="dud">${char}</span>`;
+                    } else {
+                        output += from;
+                    }
+                }
+                this.el.innerHTML = output;
+                if (complete === this.queue.length) {
+                    this.resolve();
+                } else {
+                    this.frameRequest = requestAnimationFrame(this.update);
+                    this.frame++;
+                }
+            }
+            randomChar() {
+                return this.chars[Math.floor(Math.random() * this.chars.length)];
+            }
+        }
+        const headingScrambler = mainHeading ? new TextScramble(mainHeading) : null;
+
+
+        // --- JavaScript for ULTRA CRAZY Avatar Click Effect ---
+        if (profilePhoto && clickEffectOverlay && flashElement && Tone) {
+            let animationInProgress = false;
+            
+            // Initialize Tone.js synth for sound effect
+            const synth = new Tone.PolySynth(Tone.Synth, {
+                oscillator: { type: "fatsawtooth", count: 3, spread: 30 },
+                envelope: {
+                    attack: 0.01,
+                    decay: 0.2,
+                    sustain: 0.1,
+                    release: 0.3,
+                    attackCurve: "exponential",
+                },
+                volume: -10 // Adjust volume
+            }).toDestination();
+
+            const noiseSynth = new Tone.NoiseSynth({
+                noise: { type: 'white' },
+                envelope: { attack: 0.005, decay: 0.1, sustain: 0 },
+                volume: -15
+            }).toDestination();
+
+
+            profilePhoto.addEventListener('click', async (event) => {
+                if (animationInProgress) return; 
+                animationInProgress = true;
+                bodyEl.classList.add('effects-active'); // Used to pause other hover effects
+
+                // 0. Play Sound Effect
+                try {
+                    await Tone.start(); // Ensure AudioContext is started
+                    synth.triggerAttackRelease(["C2", "G2", "C3"], "8n", Tone.now());
+                    synth.triggerAttackRelease(["E3", "G3", "C4"], "16n", Tone.now() + 0.1);
+                    noiseSynth.triggerAttackRelease("4n", Tone.now() + 0.05);
+                } catch (e) {
+                    console.error("Tone.js error:", e);
+                }
+
+
+                // 1. Avatar Obliteration
+                profilePhoto.classList.add('avatar-obliterate');
+
+                // 2. Screen Shake Ultra
+                bodyEl.classList.add('screen-shake-ultra');
+                
+                // 3. Flash Effect Ultra
+                flashElement.classList.add('flash-active');
+
+                // 3.5 Background Warp
+                bodyEl.classList.add('background-warp');
+
+                // 3.7 Card Instability
+                if(interactiveCardContainer) interactiveCardContainer.classList.add('card-instability');
+
+
+                // 4. Particle Supernova
+                const rect = profilePhoto.getBoundingClientRect();
+                const startX = rect.left + rect.width / 2;
+                const startY = rect.top + rect.height / 2;
+
+                const numParticles = 250; // Even more particles
+                const particleColorsDark = [
+                    getComputedStyle(bodyEl).getPropertyValue('--button-primary-bg').trim(),
+                    getComputedStyle(bodyEl).getPropertyValue('--aurora-1-mid1').trim(),
+                    getComputedStyle(bodyEl).getPropertyValue('--aurora-1-mid2').trim(),
+                    getComputedStyle(bodyEl).getPropertyValue('--theme-switcher-hover-color').trim(),
+                    '#FFFFFF', '#FFD700', '#FF00FF', '#00FFFF' // Added Gold, Magenta, Cyan
+                ];
+                 const particleColorsLight = [
+                    getComputedStyle(bodyEl).getPropertyValue('--button-primary-bg').trim(),
+                    getComputedStyle(bodyEl).getPropertyValue('--aurora-1-mid1').trim(),
+                    getComputedStyle(bodyEl).getPropertyValue('--aurora-1-mid2').trim(),
+                    getComputedStyle(bodyEl).getPropertyValue('--theme-switcher-hover-color').trim(),
+                    '#37474f', '#D4AF37', '#EE82EE', '#7FFFD4' // Added Dark Gold, Violet, Aquamarine
+                ];
+                const particleColors = bodyEl.classList.contains('light-theme') ? particleColorsLight : particleColorsDark;
+
+
+                for (let i = 0; i < numParticles; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('click-effect-particle');
+                    
+                    // Alternate between circles and streaks
+                    if (Math.random() > 0.6) {
+                        particle.classList.add('streak');
+                        particle.style.width = `${Math.random() * 20 + 5}px`; // Longer streaks
+                        particle.style.height = `${Math.random() * 3 + 1}px`; // Thinner streaks
+                    } else {
+                        particle.classList.add('circle');
+                        const size = Math.random() * 12 + 5; // Larger circles (5px to 17px)
+                        particle.style.width = `${size}px`;
+                        particle.style.height = `${size}px`;
+                    }
+                    
+                    particle.style.left = `${startX}px`;
+                    particle.style.top = `${startY}px`;
+                    
+                    const angle = Math.random() * Math.PI * 2; 
+                    const distance = Math.random() * (Math.max(window.innerWidth, window.innerHeight) / 1.1) + 100; // Wider spread
+                    const endX = Math.cos(angle) * distance;
+                    const endY = Math.sin(angle) * distance;
+                    const duration = Math.random() * 1.2 + 1.0; // Duration (1.0s to 2.2s)
+                    const delay = Math.random() * 0.3; // Increased delay spread
+                    const endRotation = (Math.random() - 0.5) * 1080; // Random rotation up to 3 full turns
+
+                    particle.style.backgroundColor = particleColors[Math.floor(Math.random() * particleColors.length)];
+                    
+                    particle.style.setProperty('--end-tx', `${endX}px`);
+                    particle.style.setProperty('--end-ty', `${endY}px`);
+                    particle.style.setProperty('--end-scale', `${Math.random() * 0.7 + 0.4}`); 
+                    particle.style.setProperty('--end-rotate', `${endRotation}deg`);
+
+
+                    particle.style.animationName = 'particleExplode';
+                    particle.style.animationDuration = `${duration}s`;
+                    particle.style.animationDelay = `${delay}s`;
+
+                    clickEffectOverlay.appendChild(particle);
+
+                    setTimeout(() => {
+                        if (particle.parentElement) {
+                           particle.remove();
+                        }
+                    }, (duration + delay) * 1000 + 200); // Increased buffer
+                }
+
+                // 5. Text Scramble
+                if (headingScrambler && mainHeading) {
+                    const originalText = mainHeading.dataset.originalText || "Mitchel Labonté";
+                    // Scramble to something random first, then back to original
+                    setTimeout(async () => {
+                        await headingScrambler.setText("!#?*&@$*%"); // Intermediate gibberish
+                        setTimeout(async () => {
+                           await headingScrambler.setText(originalText);
+                        }, 300); // Duration of gibberish
+                    }, 400); // Delay before text scramble starts
+                }
+
+
+                // Cleanup animations
+                setTimeout(() => {
+                    bodyEl.classList.remove('screen-shake-ultra');
+                    bodyEl.classList.remove('background-warp');
+                     if(interactiveCardContainer) interactiveCardContainer.classList.remove('card-instability');
+                    flashElement.classList.remove('flash-active');
+                    profilePhoto.classList.remove('avatar-obliterate');
+                    bodyEl.classList.remove('effects-active');
+                    animationInProgress = false;
+                }, 2500); // Max duration for all effects
+            });
+        }
+        // --- End of Avatar Click Effect JavaScript ---
+
     </script>
 
 </body>
