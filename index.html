@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mitchel Labonté - Professional Portfolio</title>
+    <title>Mitchel Labonté</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -114,8 +114,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh; /* Ensures page takes full viewport height */
-            padding: 1rem; /* Added padding to body to prevent card touching edges on small screens if content is short */
+            min-height: 100vh; 
+            padding: 1rem; 
             position: relative; 
             background-color: var(--page-bg);
             transition: background-color 0.3s ease, color 0.3s ease;
@@ -168,12 +168,10 @@
             100% { background-position: 0% 0%; transform: scale(1); }
         }
         
-        /* Interactive Card Container */
         .interactive-card-container {
             width: 100%;
             max-width: 42rem; 
-            /* min-height: 650px; REMOVED to allow content to dictate height */
-            height: auto; /* Explicitly set to auto */
+            height: auto; 
             position: relative;
             perspective: 1500px; 
             transform-style: preserve-3d; 
@@ -182,10 +180,9 @@
             z-index: 1;
         }
 
-        /* Main Card Styling */
         .m3-card {
             width: 100%;
-            height: auto; /* Allow card to size to its content */
+            height: auto; 
             display: flex;
             flex-direction: column; 
             background-color: var(--card-bg); 
@@ -199,7 +196,7 @@
         }
         
         .card-content {
-            flex-grow: 1; /* This will ensure content takes up space, pushing footer down */
+            flex-grow: 1; 
             padding: 1.5rem; text-align: center;
         }
         @media (min-width: 768px) { .card-content { padding: 2.5rem; } }
@@ -212,7 +209,7 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center;
-            flex-shrink: 0; /* Prevent footer from shrinking */
+            flex-shrink: 0; 
         }
         
         .animate-slide-fade-in {
@@ -292,13 +289,13 @@
             <div class="card-content">
                 <img 
                     id="profilePhoto"
-                    src="https://placehold.co/160x160/00796B/FFFFFF?text=ML&font=inter" 
+                    src="photo.jpg" 
                     alt="Mitchel Labonté" 
-                    class="w-36 h-36 sm:w-40 sm:h-40 rounded-full mx-auto mb-6 border-4 border-[var(--card-inset-border)] shadow-2xl animate-slide-fade-in"
+                    class="w-36 h-36 sm:w-40 sm:h-40 rounded-full object-cover mx-auto mb-6 border-4 border-[var(--card-inset-border)] shadow-2xl animate-slide-fade-in"
                     onerror="this.onerror=null; this.src='https://placehold.co/160x160/90A4AE/FFFFFF?text=Photo+Error&font=inter';"
                 >
                 <h1 class="text-4xl sm:text-5xl font-bold animate-slide-fade-in delay-1">Mitchel Labonté</h1>
-                <p class="text-lg sm:text-xl text-slate-600 mt-2 animate-slide-fade-in delay-2">Software Developer | Tech Enthusiast</p>
+                <p class="text-lg sm:text-xl text-slate-600 mt-2 animate-slide-fade-in delay-2">Software Developer | Tech Innovator</p>
             
                 <div class="mt-8 space-y-5">
                     <a href="mailto:mitchellabonte@gmail.com" class="m3-button m3-button-primary w-full max-w-xs mx-auto animate-slide-fade-in delay-3">
@@ -345,7 +342,15 @@
                 bgColorHex = getComputedStyle(bodyEl).getPropertyValue('--placeholder-bg').trim().substring(1) || '00796B';
                 textColorHex = getComputedStyle(bodyEl).getPropertyValue('--placeholder-text').trim().substring(1) || 'FFFFFF';
             }
+            // Ensure the onerror handler also uses a thematically appropriate placeholder if the main one fails
+            const errorPlaceholderBg = isLightTheme ? 'B0BEC5' : '455A64'; // Light grey / Darker grey
+            const errorPlaceholderText = isLightTheme ? '37474F' : 'CFD8DC'; // Dark text / Light text
+
             profilePhoto.src = `https://placehold.co/160x160/${bgColorHex}/${textColorHex}?text=ML&font=inter`;
+            profilePhoto.onerror = function() {
+                this.onerror=null; // prevent infinite loop if error placeholder also fails
+                this.src=`https://placehold.co/160x160/${errorPlaceholderBg}/${errorPlaceholderText}?text=Error&font=inter`;
+            };
         }
         
         function applyThemePreference(theme) {
